@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+//COMPONENTS
 import App from './App';
 
+//STYLES
 import './index.css';
+
+//PAGES
 import ErrorPage from './pages/ErrorPage';
 import FavioritesCardList from './pages/FavioritesCardList';
 import MainPage from './pages/MainPage';

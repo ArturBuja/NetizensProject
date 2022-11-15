@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const MainHeader = () => {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>StarWars</div>
+      <div className={classes.logo}>Pokemon Cards</div>
       <nav className={classes.nav}>
         <ul>
           <li>

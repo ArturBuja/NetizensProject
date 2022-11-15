@@ -9,12 +9,13 @@ function MainPage() {
     sendRequest,
     status,
     data: loadedCards,
+    error,
   } = useHttp(fetchAllCards, true);
+
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
 
-  console.log(loadedCards);
   let results;
 
   if (status === 'pending') {

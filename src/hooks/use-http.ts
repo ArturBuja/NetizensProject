@@ -1,5 +1,20 @@
 import { useReducer, useCallback } from 'react';
 
+enum HttpReducerActionKind {
+  SEND = 'SEND',
+  ERROR = 'ERROR',
+  SUCCESS = 'SUCCES',
+}
+
+interface HttpAction {
+  type: HttpReducerActionKind;
+  payload: {
+    data: any;
+    error: any;
+    status: 'pending' | 'completed';
+  };
+}
+
 function httpReducer(state: any, action: any) {
   if (action.type === 'SEND') {
     return {

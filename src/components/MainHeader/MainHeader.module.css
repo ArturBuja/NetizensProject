@@ -5,7 +5,7 @@
   padding: 0 10%;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
+  background-color: green;
 }
 
 .logo {
@@ -27,11 +27,11 @@
 
 .nav a {
   text-decoration: none;
-  color: #0881d1;
+  color: purple;
 }
 
 .nav a:hover,
 .nav a:active,
 .nav a.active {
-  color: red;
+  color: blue;
 }

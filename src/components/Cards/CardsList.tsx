@@ -1,15 +1,21 @@
 import React from 'react';
-import { ICardResult, IFetchcardResponse } from '../../types/Index';
+
+//COMPONENTS
 import CardItem from './CardItem';
 
-const CardsList: React.FC<IFetchcardResponse> = ({ results }) => {
-  // console.log(cards);
+const CardsList: React.FC<any> = ({ results }) => {
   return (
-    <ul>
-      {results.map((card: ICardResult, idx: number) => (
+    <section
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+      }}
+    >
+      {results.map((card: any, idx: number) => (
         <CardItem key={idx} results={card} />
       ))}
-    </ul>
+    </section>
   );
 };
 
