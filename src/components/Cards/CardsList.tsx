@@ -13,7 +13,7 @@ const CardsList: React.FC<any> = ({ results }) => {
       }}
     >
       {results.map((card: any, idx: number) => (
-        <CardItem key={idx} results={card} />
+        <CardItem key={idx} results={card} i={idx} />
       ))}
     </section>
   );

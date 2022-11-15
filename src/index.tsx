@@ -13,6 +13,8 @@ import ErrorPage from './pages/ErrorPage';
 import FavioritesCardList from './pages/FavioritesCardList';
 import MainPage from './pages/MainPage';
 
+//CTX
+import { FavoriteContextProvider } from './store/fovorite-contex';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -30,6 +32,8 @@ const router = createBrowserRouter([
 ]);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <FavoriteContextProvider>
+      <RouterProvider router={router} />
+    </FavoriteContextProvider>
   </React.StrictMode>
 );
