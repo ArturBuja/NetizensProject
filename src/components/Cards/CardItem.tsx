@@ -41,15 +41,20 @@ const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
 
   const addFav = () => {
     if (!isFavourited) {
-      const newStarageItem: number[] = [...favotites, i];
+      const favotiesActual = JSON.parse(
+        localStorage.getItem('favorites') || '[]'
+      );
+      const newStarageItem: number[] = [...favotiesActual, i];
+      console.log(newStarageItem);
+      localStorage.setItem('favorites', JSON.stringify(newStarageItem));
       setFavorites(newStarageItem);
-      window.localStorage.setItem('favorites', JSON.stringify(newStarageItem));
-      window.location.reload();
     } else {
-      const newStorageItem = favotites.filter((id: number) => id !== i);
+      const favotiesActual = JSON.parse(
+        localStorage.getItem('favorites') || '[]'
+      );
+      const newStorageItem = favotiesActual.filter((id: number) => id !== i);
+      localStorage.setItem('favorites', JSON.stringify(newStorageItem));
       setFavorites(newStorageItem);
-      window.localStorage.setItem('favorites', JSON.stringify(newStorageItem));
-      window.location.reload();
     }
 
     const storage = localStorage.getItem('favItem' + i || '[]');
