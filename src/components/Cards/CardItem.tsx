@@ -73,37 +73,56 @@ const CardItem = ({ results, i }: any) => {
   if (status === 'completed') {
     output = (
       <>
-        <h4>Statystyki:</h4>
-        <>
-          {data.stats.map((item: any, idx: number) => {
-            return (
-              <p key={idx}>
-                {item.stat.name}: {item.base_stat}
-              </p>
-            );
-          })}
-        </>
-        <div className={classes.btnContainer}>
-          {isFavourited ? (
-            <AiFillHeart onClick={() => addFav()} color='green' size={50} />
-          ) : (
-            <AiOutlineHeart onClick={() => addFav()} color='green' size={50} />
-          )}
-          <AiOutlineRollback
-            color='green'
-            size={50}
-            onClick={() => setClicked(state => !state)}
-          />
-        </div>
+        <div className={classes.borderCard}></div>
+        <figcaption className={classes.captionCard}>
+          <h4>Statystyki:</h4>
+          <>
+            {data.stats.map((item: any, idx: number) => {
+              return (
+                <ul key={idx}>
+                  <li>
+                    {item.stat.name}: {item.base_stat}
+                  </li>
+                </ul>
+              );
+            })}
+          </>
+          <div className={classes.btnContainer}>
+            {isFavourited ? (
+              <AiFillHeart onClick={() => addFav()} color='red' size={50} />
+            ) : (
+              <AiOutlineHeart onClick={() => addFav()} color='red' size={50} />
+            )}
+            <AiOutlineRollback
+              color='#3a1c71'
+              size={50}
+              onClick={() => setClicked(state => !state)}
+            />
+          </div>
+        </figcaption>
       </>
     );
   }
   return (
     <ReactCardFlip isFlipped={clicked} flipDirection={'horizontal'}>
-      <div className={classes.frontCard} onClick={cardClickHandler}>
-        <h4>{results.name}</h4>
-      </div>
-      <div className={classes.card}>{output}</div>
+      <figure className={classes.frontCard} onClick={cardClickHandler}>
+        <div className={classes.borderCard}></div>
+        <figcaption
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+          className={classes.captionCard}
+        >
+          <h4>{results.name}</h4>
+          <p>
+            <i>Kliknij aby odwórcić kartę i zobaczyć statystyki</i>
+          </p>
+        </figcaption>
+      </figure>
+      <figure className={classes.card}>{output}</figure>
     </ReactCardFlip>
   );
 };
