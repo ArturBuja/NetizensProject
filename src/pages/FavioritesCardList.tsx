@@ -1,5 +1,5 @@
 import CardItem from '../components/Cards/CardItem';
-import CardList from '../components/Cards/CardsList';
+import CardList from './AllCardsList';
 
 function FavioritesCardList() {
   const favList: any = [{}];
@@ -18,9 +18,17 @@ function FavioritesCardList() {
   }
 
   return (
-    <div className='centered'>
-      <h2>Brak ulubionych kart.</h2>
-    </div>
+    <section
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+      }}
+    >
+      {favList.map((card: any, idx: number) => (
+        <CardItem key={idx} results={card} i={getArray[idx]} />
+      ))}
+    </section>
   );
 }
 

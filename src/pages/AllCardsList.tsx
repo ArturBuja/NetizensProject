@@ -1,7 +1,7 @@
 import React from 'react';
 
 //COMPONENTS
-import CardItem from './CardItem';
+import CardItem from '../components/Cards/CardItem';
 
 const CardsList: React.FC<any> = ({ results }) => {
   return (

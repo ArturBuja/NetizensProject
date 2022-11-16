@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import CardList from '../components/Cards/CardsList';
+import CardList from './AllCardsList';
 import useHttp from '../hooks/use-http';
 import { fetchAllCards } from '../lib/api';
 import LoadingSpinner from '../UI/LoadingSpinner';

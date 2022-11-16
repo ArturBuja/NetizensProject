@@ -1,7 +1,5 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import FavoriteContext from '../../store/fovorite-contex';
-
 //styles
 import classes from './CardItem.module.css';
 
@@ -17,55 +15,43 @@ import useHttp from '../../hooks/use-http';
 //ICONS
 import { AiOutlineHeart, AiFillHeart, AiOutlineRollback } from 'react-icons/ai';
 
-function CardItem({ results, i }: any) {
-  const favCtx = useContext(FavoriteContext);
+const CardItem = ({ results, i }: any) => {
   const [clicked, setClicked] = useState(false);
-  const [favotites, setFavorites] = useState([] as number[]);
-  const getArray = JSON.parse(localStorage.getItem('favorites') || '0');
+  const [favotites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem('favorites') || '[]')
+  );
   const { sendRequest, status, data, error } = useHttp(
     fetchSinglePokemon,
     true
   );
-
-  useEffect(() => {
-    if (getArray !== 0) {
-      setFavorites([...getArray]);
-    }
-  }, []);
+  const isFavourited = favotites.includes(i);
 
   const cardClickHandler = async () => {
     sendRequest(results.url);
     setClicked(state => !state);
   };
 
-  const favioritesHandler = (id: number) => {
-    console.log(results);
-    favCtx.addToFavorite(results, id);
-    console.log(id);
-  };
+  const addFav = useCallback(() => {
+    if (!isFavourited) {
+      const newStarageItem = [...favotites, i];
+      setFavorites(newStarageItem);
+      window.localStorage.setItem('favorites', JSON.stringify(newStarageItem));
+      window.location.reload();
+    } else {
+      console.log('usuwanie');
+      const newStorageItem = favotites.filter((id: number) => id !== i);
+      setFavorites(newStorageItem);
+      window.localStorage.setItem('favorites', JSON.stringify(newStorageItem));
+    }
 
-  const addFav = (props: any) => {
-    let array = favotites;
-    console.log(array);
-    let addAray = true;
-    array.map((item: any, key: number) => {
-      if ((item = props.i)) {
-        array.splice(key, 1);
-        addAray = false;
-      }
-    });
-    if (addAray) array.push(props.i);
-    setFavorites([...array]);
-    localStorage.setItem('favorites', JSON.stringify(favotites));
-
-    const storage = localStorage.getItem('favItem' + props.i || '0');
+    const storage = localStorage.getItem('favItem' + i || '[]');
 
     if (storage == null) {
-      localStorage.setItem('favItem' + props.i, JSON.stringify(props.results));
+      localStorage.setItem('favItem' + i, JSON.stringify(results));
     } else {
-      localStorage.removeItem('favItem' + props.i);
+      localStorage.removeItem('favItem' + i);
     }
-  };
+  }, [favotites, i, isFavourited, results]);
 
   let output;
 
@@ -98,18 +84,10 @@ function CardItem({ results, i }: any) {
           })}
         </>
         <div className={classes.btnContainer}>
-          {favotites.includes(i) ? (
-            <AiFillHeart
-              onClick={() => addFav({ results, i })}
-              color='green'
-              size={50}
-            />
+          {isFavourited ? (
+            <AiFillHeart onClick={() => addFav()} color='green' size={50} />
           ) : (
-            <AiOutlineHeart
-              onClick={() => addFav({ results, i })}
-              color='green'
-              size={50}
-            />
+            <AiOutlineHeart onClick={() => addFav()} color='green' size={50} />
           )}
           <AiOutlineRollback
             color='green'
@@ -128,6 +106,6 @@ function CardItem({ results, i }: any) {
       <div className={classes.card}>{output}</div>
     </ReactCardFlip>
   );
-}
+};
 
 export default CardItem;

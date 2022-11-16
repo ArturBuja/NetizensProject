@@ -14,7 +14,7 @@ const MainHeader = () => {
               className={navData => (navData.isActive ? classes.active : '')}
               to='/'
             >
-              All
+              Wszystkie
             </NavLink>
           </li>
           <li>
@@ -22,7 +22,7 @@ const MainHeader = () => {
               className={navData => (navData.isActive ? classes.active : '')}
               to='fav'
             >
-              Fav
+              Ulubione
             </NavLink>
           </li>
         </ul>
