@@ -11,7 +11,7 @@ interface IProps {
   results: ISingleCard[];
 }
 
-const CardsList: React.FC<IProps> = ({ results }) => {
+const AllCardsList: React.FC<IProps> = ({ results }) => {
   return (
     <section
       style={{
@@ -27,4 +27,4 @@ const CardsList: React.FC<IProps> = ({ results }) => {
   );
 };
 
-export default CardsList;
+export default AllCardsList;

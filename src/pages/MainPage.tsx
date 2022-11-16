@@ -7,7 +7,7 @@ import { IuseHttp } from '../types/Index';
 import { fetchAllCards } from '../lib/api';
 
 //COMPONENTS
-import CardList from './AllCardsList';
+import AllCardsList from './AllCardsList';
 import LoadingSpinner from '../UI/LoadingSpinner';
 
 //CUSTOM HOOKS
@@ -25,23 +25,23 @@ function MainPage() {
     sendRequest();
   }, [sendRequest]);
 
-  let results: React.ReactNode;
-
   if (status === 'pending') {
-    results = (
+    return (
       <div className='centered'>
         <LoadingSpinner />
       </div>
     );
   }
+
   if (status === 'completed' && (!loadedCards || loadedCards.length === 0)) {
-    results = <p className='centered'> Coś poszło nie tak! Error: {error}</p>;
+    console.log('componnet');
+    return (
+      <p className='centered focused'> Coś poszło nie tak! Error: {error}</p>
+    );
+    // return;
   }
 
-  if (status === 'completed' && (loadedCards || loadedCards.length > 0)) {
-    results = <CardList results={loadedCards} />;
-  }
-  return <section>{results}</section>;
+  return <AllCardsList results={loadedCards} />;
 }
 
 export default MainPage;
