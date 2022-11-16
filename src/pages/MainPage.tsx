@@ -1,8 +1,17 @@
-import React, { useEffect } from 'react';
-import CardList from './AllCardsList';
-import useHttp from '../hooks/use-http';
+import { useEffect } from 'react';
+
+//TYPES
+import { IuseHttp } from '../types/Index';
+
+//API
 import { fetchAllCards } from '../lib/api';
+
+//COMPONENTS
+import CardList from './AllCardsList';
 import LoadingSpinner from '../UI/LoadingSpinner';
+
+//CUSTOM HOOKS
+import useHttp from '../hooks/use-http';
 
 function MainPage() {
   const {
@@ -10,13 +19,13 @@ function MainPage() {
     status,
     data: loadedCards,
     error,
-  } = useHttp(fetchAllCards, true);
+  }: IuseHttp = useHttp(fetchAllCards, true);
 
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
 
-  let results;
+  let results: React.ReactNode;
 
   if (status === 'pending') {
     results = (

@@ -5,7 +5,6 @@ const baseUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=60&offset=60';
 export const fetchAllCards = async () => {
   const response = await fetch(baseUrl);
   const data: IFetchAllCardResponse = await response.json();
-  console.log(data);
   if (!response.ok) {
     throw new Error('Bład przy pobieraniu kart');
   }

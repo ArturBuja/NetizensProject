@@ -9,14 +9,9 @@ export interface IFetchAllCardResponse {
   results: ISingleCard[];
 }
 
-export interface Result {
-  name: string;
-  url: string;
-}
-
-export interface IResponseRootResult {
-  count: number;
-  next: string;
-  previous?: any;
-  results: Result[];
+export interface IuseHttp {
+  sendRequest: any;
+  status: 'pending' | 'completed';
+  data: any;
+  error: string;
 }

@@ -3,7 +3,7 @@ import classes from './MainHeader.module.css';
 
 import { NavLink } from 'react-router-dom';
 
-const MainHeader = () => {
+const MainHeader: React.FC = (): JSX.Element => {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>Pokemon Cards</div>

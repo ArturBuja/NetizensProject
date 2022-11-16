@@ -8,13 +8,15 @@ interface ISingleCard {
 function FavioritesCardList() {
   const favList: ISingleCard[] = [];
 
-  const getArray: any = JSON.parse(localStorage.getItem('favorites') || '0');
+  const getArray: number[] = JSON.parse(
+    localStorage.getItem('favorites') || '0'
+  );
   for (let index = 0; index < getArray.length; index++) {
     let x: number = getArray[index];
     favList[index] = JSON.parse(localStorage.getItem('favItem' + [x]) || '');
   }
   console.log(favList);
-  if (getArray.length <= '0' || getArray === '0' || getArray === 0) {
+  if (getArray.length <= 0) {
     return (
       <div className='centered'>
         <h2>Brak ulubionych kart.</h2>

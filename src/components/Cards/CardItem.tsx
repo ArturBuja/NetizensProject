@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 //styles
 import classes from './CardItem.module.css';
@@ -15,17 +15,20 @@ import useHttp from '../../hooks/use-http';
 //ICONS
 import { AiOutlineHeart, AiFillHeart, AiOutlineRollback } from 'react-icons/ai';
 
+//types
+import { ISingleCard, IuseHttp } from '../../types/Index';
+
 type IProps = {
-  results: any;
+  results: ISingleCard;
   i: number;
 };
 
 const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
   const [clicked, setClicked] = useState(false);
-  const [favotites, setFavorites] = useState(
+  const [favotites, setFavorites] = useState<number[]>(
     JSON.parse(localStorage.getItem('favorites') || '[]')
   );
-  const { sendRequest, status, data, error } = useHttp(
+  const { sendRequest, status, data, error }: IuseHttp = useHttp(
     fetchSinglePokemon,
     true
   );
@@ -36,17 +39,17 @@ const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
     setClicked(state => !state);
   };
 
-  const addFav = useCallback(() => {
+  const addFav = () => {
     if (!isFavourited) {
-      const newStarageItem = [...favotites, i];
+      const newStarageItem: number[] = [...favotites, i];
       setFavorites(newStarageItem);
       window.localStorage.setItem('favorites', JSON.stringify(newStarageItem));
       window.location.reload();
     } else {
-      console.log('usuwanie');
       const newStorageItem = favotites.filter((id: number) => id !== i);
       setFavorites(newStorageItem);
       window.localStorage.setItem('favorites', JSON.stringify(newStorageItem));
+      window.location.reload();
     }
 
     const storage = localStorage.getItem('favItem' + i || '[]');
@@ -56,9 +59,9 @@ const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
     } else {
       localStorage.removeItem('favItem' + i);
     }
-  }, [favotites, i, isFavourited, results]);
+  };
 
-  let output;
+  let output: React.ReactNode;
 
   //Component with detals if status is:
   if (status === 'pending') {

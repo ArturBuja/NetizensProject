@@ -2,7 +2,11 @@ import classes from './Layout.module.css';
 import MainNavigation from '../MainHeader/MainHeader';
 import ScrollButton from '../../UI/ScroolButton';
 
-const Layout = (props: any) => {
+type IProps = {
+  children: React.ReactNode;
+};
+
+const Layout: React.FC<IProps> = props => {
   return (
     <>
       <MainNavigation />

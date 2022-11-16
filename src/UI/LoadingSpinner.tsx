@@ -1,7 +1,8 @@
+//styles
 import classes from './LoadingSpinner.module.css';
 
-const LoadingSpinner = () => {
+const LoadingSpinner: React.FC = (): JSX.Element => {
   return <div className={classes.spinner}></div>;
-}
+};
 
 export default LoadingSpinner;
