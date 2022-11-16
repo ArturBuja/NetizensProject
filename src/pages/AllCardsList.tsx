@@ -3,7 +3,15 @@ import React from 'react';
 //COMPONENTS
 import CardItem from '../components/Cards/CardItem';
 
-const CardsList: React.FC<any> = ({ results }) => {
+interface ISingleCard {
+  url: string;
+  name: string;
+}
+interface IProps {
+  results: ISingleCard[];
+}
+
+const CardsList: React.FC<IProps> = ({ results }) => {
   return (
     <section
       style={{
@@ -12,9 +20,9 @@ const CardsList: React.FC<any> = ({ results }) => {
         justifyContent: 'space-evenly',
       }}
     >
-      {results.map((card: any, idx: number) => (
-        <CardItem key={idx} results={card} i={idx} />
-      ))}
+      {results.map((card: ISingleCard, idx: number) => {
+        return <CardItem key={idx} results={card} i={idx} />;
+      })}
     </section>
   );
 };

@@ -1,14 +1,19 @@
 import CardItem from '../components/Cards/CardItem';
-import CardList from './AllCardsList';
+
+interface ISingleCard {
+  url: string;
+  name: string;
+}
 
 function FavioritesCardList() {
-  const favList: any = [{}];
-  const getArray = JSON.parse(localStorage.getItem('favorites') || '0');
+  const favList: ISingleCard[] = [];
+
+  const getArray: any = JSON.parse(localStorage.getItem('favorites') || '0');
   for (let index = 0; index < getArray.length; index++) {
-    let x = getArray[index];
+    let x: number = getArray[index];
     favList[index] = JSON.parse(localStorage.getItem('favItem' + [x]) || '');
   }
-  console.log(getArray);
+  console.log(favList);
   if (getArray.length <= '0' || getArray === '0' || getArray === 0) {
     return (
       <div className='centered'>
@@ -25,7 +30,7 @@ function FavioritesCardList() {
         justifyContent: 'space-evenly',
       }}
     >
-      {favList.map((card: any, idx: number) => (
+      {favList.map((card: ISingleCard, idx: number) => (
         <CardItem key={idx} results={card} i={getArray[idx]} />
       ))}
     </section>

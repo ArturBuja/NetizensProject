@@ -1,11 +1,11 @@
-import { IFetchcardResponse } from '../types/Index';
+import { IFetchAllCardResponse } from '../types/Index';
 
-const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
+const baseUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=60&offset=60';
 
 export const fetchAllCards = async () => {
   const response = await fetch(baseUrl);
-  const data: IFetchcardResponse = await response.json();
-
+  const data: IFetchAllCardResponse = await response.json();
+  console.log(data);
   if (!response.ok) {
     throw new Error('Bład przy pobieraniu kart');
   }

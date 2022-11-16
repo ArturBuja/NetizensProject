@@ -15,7 +15,12 @@ import useHttp from '../../hooks/use-http';
 //ICONS
 import { AiOutlineHeart, AiFillHeart, AiOutlineRollback } from 'react-icons/ai';
 
-const CardItem = ({ results, i }: any) => {
+type IProps = {
+  results: any;
+  i: number;
+};
+
+const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
   const [clicked, setClicked] = useState(false);
   const [favotites, setFavorites] = useState(
     JSON.parse(localStorage.getItem('favorites') || '[]')

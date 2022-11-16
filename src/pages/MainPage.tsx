@@ -26,7 +26,7 @@ function MainPage() {
     );
   }
   if (status === 'completed' && (!loadedCards || loadedCards.length === 0)) {
-    results = <p className='centered'> Coś poszło nie tak!</p>;
+    results = <p className='centered'> Coś poszło nie tak! Error: {error}</p>;
   }
 
   if (status === 'completed' && (loadedCards || loadedCards.length > 0)) {

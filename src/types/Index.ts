@@ -1,28 +1,12 @@
-export interface ICardResult {
-  cards: any;
-  name: string;
-  height: string;
-  mass: string;
-  hair_color: string;
-  skin_color: string;
-  eye_color: string;
-  birth_year: string;
-  gender: string;
-  homeworld: string;
-  films: string[];
-  species: string[];
-  vehicles: string[];
-  starships: string[];
-  created: Date;
-  edited: Date;
+export interface ISingleCard {
   url: string;
+  name: string;
 }
-
-export interface IFetchcardResponse {
+export interface IFetchAllCardResponse {
   count: number;
   next: string;
   previous?: any;
-  results: ICardResult[];
+  results: ISingleCard[];
 }
 
 export interface Result {
