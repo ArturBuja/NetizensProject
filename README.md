@@ -2,7 +2,7 @@
 
 [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Kilka dostępnych skrytpów
 
 W katalogu projektu możesz uruchomić:
 
@@ -28,8 +28,8 @@ Twoja aplikacja jest gotowa do wdrożenia!
 
 Zobacz sekcję dotyczącą [wdrażania](https://facebook.github.io/create-react-app/docs/deployment), aby uzyskać więcej informacji.
 
-## Learn More
+## Dowiedź się więcej
 
 Możesz zobaczyć więcej w oficjalnej dokumentacji [Create React App Dokumentacja](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Projekt pojego autorstwa a tło wektorowe wykonane dzięki: Image by vector_corp on Freepik
+Projekt własnego autorstwa. Tło wektorowe wykonane dzięki: Image by vector_corp on Freepik
