@@ -82,8 +82,13 @@ const CardItem: React.FC<IProps> = ({
   //Component with detals if status is:
   if (status === 'pending') {
     output = (
-      <div className='centered'>
-        <LoadingSpinner />
+      <div className={classes.card}>
+        <div className={classes.borderCard}></div>
+        <figcaption className={classes.captionCard}>
+          <div className='centered'>
+            <LoadingSpinner />
+          </div>
+        </figcaption>
       </div>
     );
   }
