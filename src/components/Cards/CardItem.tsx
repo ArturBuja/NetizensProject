@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 
 //styles
 import classes from './CardItem.module.css';
+import './heart.css';
 
 //COMPONENTS
 import LoadingSpinner from '../../UI/LoadingSpinner';
@@ -14,7 +15,7 @@ import { fetchSinglePokemon } from '../../lib/api';
 import useHttp from '../../hooks/use-http';
 
 //ICONS
-import { AiOutlineHeart, AiFillHeart, AiOutlineRollback } from 'react-icons/ai';
+import { AiOutlineRollback } from 'react-icons/ai';
 
 //types
 import { ISingleCard, IuseHttp } from '../../types/Index';
@@ -63,7 +64,6 @@ const CardItem: React.FC<IProps> = ({
       setFavorites(newStorageItem);
       if (onRemoveItem) {
         onRemoveItem();
-        setClicked(prevState => !prevState);
       }
     }
 
@@ -111,14 +111,14 @@ const CardItem: React.FC<IProps> = ({
             })}
           </>
           <div className={classes.btnContainer}>
-            {isFavourited ? (
-              <AiFillHeart onClick={() => addFav()} color='red' size={50} />
-            ) : (
-              <AiOutlineHeart onClick={() => addFav()} color='red' size={50} />
-            )}
+            <div
+              onClick={() => addFav()}
+              className={isFavourited ? 'heart heart-active' : 'heart'}
+            />
             <AiOutlineRollback
               color='#3a1c71'
               size={50}
+              style={{ marginLeft: '70%' }}
               onClick={() => setClicked(state => !state)}
             />
           </div>
@@ -141,7 +141,7 @@ const CardItem: React.FC<IProps> = ({
         >
           <h4>{results.name}</h4>
           <p>
-            <i>Kliknij aby odwórcić kartę i zobaczyć statystyki</i>
+            <i>Kliknij, aby odwrócić kartę i zobaczyć statystyki.</i>
           </p>
         </figcaption>
       </figure>
