@@ -1,5 +1,5 @@
-//components
 import { useState } from 'react';
+//components
 import CardItem from '../components/Cards/CardItem';
 
 interface ISingleCard {

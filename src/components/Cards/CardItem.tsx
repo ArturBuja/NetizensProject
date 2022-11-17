@@ -42,12 +42,12 @@ const CardItem: React.FC<IProps> = ({
 
   const isFavourited = favotites.includes(i);
 
-  const cardClickHandler = async () => {
+  const showSecondSideCardHandler = async () => {
     sendRequest(results.url);
     setClicked(state => !state);
   };
 
-  const addFav = () => {
+  const addOrRemoveCardFromFavorites = () => {
     if (!isFavourited) {
       const favotiesActual = JSON.parse(
         localStorage.getItem('favorites') || '[]'
@@ -64,6 +64,7 @@ const CardItem: React.FC<IProps> = ({
       setFavorites(newStorageItem);
       if (onRemoveItem) {
         onRemoveItem();
+        setClicked(prevState => !prevState);
       }
     }
 
@@ -95,7 +96,7 @@ const CardItem: React.FC<IProps> = ({
   //Component with detals if status is:
   if (status === 'completed') {
     output = (
-      <>
+      <div className={classes.card}>
         <div className={classes.borderCard}></div>
         <figcaption className={classes.captionCard}>
           <h4>Statystyki:</h4>
@@ -112,7 +113,7 @@ const CardItem: React.FC<IProps> = ({
           </>
           <div className={classes.btnContainer}>
             <div
-              onClick={() => addFav()}
+              onClick={addOrRemoveCardFromFavorites}
               className={isFavourited ? 'heart heart-active' : 'heart'}
             />
             <AiOutlineRollback
@@ -123,12 +124,14 @@ const CardItem: React.FC<IProps> = ({
             />
           </div>
         </figcaption>
-      </>
+      </div>
     );
   }
+
+  //FRONT CARD SIDE
   return (
-    <ReactCardFlip isFlipped={clicked} flipDirection={'horizontal'}>
-      <figure className={classes.frontCard} onClick={cardClickHandler}>
+    <ReactCardFlip isFlipped={clicked}>
+      <div className={classes.card} onClick={showSecondSideCardHandler}>
         <div className={classes.borderCard}></div>
         <figcaption
           style={{
@@ -144,8 +147,9 @@ const CardItem: React.FC<IProps> = ({
             <i>Kliknij, aby odwrócić kartę i zobaczyć statystyki.</i>
           </p>
         </figcaption>
-      </figure>
-      <figure className={classes.card}>{output}</figure>
+      </div>
+      {/* BACK SIDE CARD */}
+      <>{output}</>
     </ReactCardFlip>
   );
 };

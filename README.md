@@ -6,6 +6,10 @@
 
 W katalogu projektu możesz uruchomić:
 
+### `yarn install`
+
+Instalacja wszystkich zależności które znajdują się w pliku package.json. Wymagane przed uruchomieniem w trybie programistycznym.
+
 ### `yarn start`
 
 Uruchamia aplikację w trybie programistycznym.\
