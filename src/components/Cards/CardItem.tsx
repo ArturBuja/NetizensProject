@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
+
 //styles
 import classes from './CardItem.module.css';
 
@@ -32,6 +33,7 @@ const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
     fetchSinglePokemon,
     true
   );
+
   const isFavourited = favotites.includes(i);
 
   const cardClickHandler = async () => {
@@ -45,7 +47,6 @@ const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
         localStorage.getItem('favorites') || '[]'
       );
       const newStarageItem: number[] = [...favotiesActual, i];
-      console.log(newStarageItem);
       localStorage.setItem('favorites', JSON.stringify(newStarageItem));
       setFavorites(newStarageItem);
     } else {

@@ -1,3 +1,4 @@
+//components
 import CardItem from '../components/Cards/CardItem';
 
 interface ISingleCard {
@@ -7,15 +8,16 @@ interface ISingleCard {
 
 function FavioritesCardList() {
   const favList: ISingleCard[] = [];
-
+  console.log(favList);
   const getArray: number[] = JSON.parse(
     localStorage.getItem('favorites') || '0'
   );
+
   for (let index = 0; index < getArray.length; index++) {
     let x: number = getArray[index];
     favList[index] = JSON.parse(localStorage.getItem('favItem' + [x]) || '');
   }
-  console.log(favList);
+
   if (getArray.length <= 0) {
     return (
       <div className='centered'>
