@@ -22,9 +22,14 @@ import { ISingleCard, IuseHttp } from '../../types/Index';
 type IProps = {
   results: ISingleCard;
   i: number;
+  onRemoveItem?: () => void;
 };
 
-const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
+const CardItem: React.FC<IProps> = ({
+  results,
+  i,
+  onRemoveItem,
+}): JSX.Element => {
   const [clicked, setClicked] = useState(false);
   const [favotites, setFavorites] = useState<number[]>(
     JSON.parse(localStorage.getItem('favorites') || '[]')
@@ -56,6 +61,10 @@ const CardItem: React.FC<IProps> = ({ results, i }): JSX.Element => {
       const newStorageItem = favotiesActual.filter((id: number) => id !== i);
       localStorage.setItem('favorites', JSON.stringify(newStorageItem));
       setFavorites(newStorageItem);
+      if (onRemoveItem) {
+        onRemoveItem();
+        setClicked(prevState => !prevState);
+      }
     }
 
     const storage = localStorage.getItem('favItem' + i || '[]');

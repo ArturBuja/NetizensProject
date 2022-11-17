@@ -1,4 +1,5 @@
 //components
+import { useState } from 'react';
 import CardItem from '../components/Cards/CardItem';
 
 interface ISingleCard {
@@ -7,8 +8,7 @@ interface ISingleCard {
 }
 
 function FavioritesCardList() {
-  const favList: ISingleCard[] = [];
-  console.log(favList);
+  const [favList, setFavList] = useState<ISingleCard[]>([]);
   const getArray: number[] = JSON.parse(
     localStorage.getItem('favorites') || '0'
   );
@@ -18,6 +18,15 @@ function FavioritesCardList() {
     favList[index] = JSON.parse(localStorage.getItem('favItem' + [x]) || '');
   }
 
+  //to update favorites page after dislikes a card
+  const removeFavoriteCardHandler = () => {
+    const favotiesActual = JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+    setFavList(favotiesActual);
+  };
+
+  ///component conditional rendering
   if (getArray.length <= 0) {
     return (
       <div className='centered'>
@@ -35,7 +44,12 @@ function FavioritesCardList() {
       }}
     >
       {favList.map((card: ISingleCard, idx: number) => (
-        <CardItem key={idx} results={card} i={getArray[idx]} />
+        <CardItem
+          onRemoveItem={removeFavoriteCardHandler}
+          key={idx}
+          results={card}
+          i={getArray[idx]}
+        />
       ))}
     </section>
   );
